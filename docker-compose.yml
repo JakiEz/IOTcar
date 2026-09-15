@@ -55,6 +55,7 @@ services:
   nodered:
     build: ./node-red            # see node-red/Dockerfile (adds the MySQL node)
     container_name: cmt-nodered
+    user: "1001:1001"
     restart: unless-stopped
     ports:
       - "1881:1880"
