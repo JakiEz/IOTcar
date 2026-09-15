@@ -1,0 +1,13 @@
+# local secrets
+.env
+backend/.env
+
+# dependencies / build output
+node_modules/
+car-monitor/dist/
+backend/*.exe
+
+# Node-RED runtime data (bind-mounted into the container). Keep the flow,
+# ignore credentials/secrets and generated files.
+node-red/data/*
+!node-red/data/flows.json

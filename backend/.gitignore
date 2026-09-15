@@ -1,0 +1,6 @@
+# local secrets — never commit
+.env
+
+# build output
+*.exe
+cmt-backend
