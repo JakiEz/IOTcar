@@ -68,6 +68,29 @@ services:
         condition: service_healthy
       emqx:
         condition: service_healthy
+  backend:
+      build: ./backend
+      container_name: cmt-backend
+      restart: unless-stopped
+      ports:
+        - "8080:8080"
+      environment:
+        TZ: Asia/Bangkok
+        PORT: "8080"
+        SIMULATE: "false"        
+        DB_DSN: "root:${MYSQL_ROOT_PASSWORD}@tcp(mysql:3306)/cmt?parseTime=true"
+      depends_on:
+        mysql:
+          condition: service_healthy
+
+  frontend:
+    build: ./car-monitor        # see car-monitor/Dockerfile (nginx serves the Vite build)
+    container_name: cmt-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
 
 volumes:
   cmt-mysql-data:

@@ -4,9 +4,13 @@ import BatteryPanel from "@/components/BatteryPanel";
 import OdometerPanel from "@/components/OdometerPanel";
 import TruckSelector from "@/components/TruckSelector";
 
-// Where the Go backend lives. REST for the initial load, WebSocket for live pushes.
-const API_URL = "http://localhost:8080";
-const WS_URL = "ws://localhost:8080/ws";
+// Where the Go backend lives. Relative paths, not a hardcoded host: in
+// production nginx proxies /api and /ws to the backend container on the same
+// origin (see car-monitor/nginx.conf), so this works on any domain/IP with no
+// rebuild. For local `npm run dev`, vite.config.js proxies these same paths
+// to localhost:8080, so nothing changes for local development either.
+const API_URL = "";
+const WS_URL = `${location.protocol === "https:" ? "wss" : "ws"}://${location.host}/ws`;
 
 const TABS = ["Overview", "Battery", "Trips", "Alerts"];
 

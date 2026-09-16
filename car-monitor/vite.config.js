@@ -11,4 +11,13 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  server: {
+    // App.jsx calls /api and /ws with relative paths (so the production
+    // nginx proxy works with no rebuild). Mirror that proxy here so `npm run
+    // dev` still talks to the local Go backend on :8080 without editing code.
+    proxy: {
+      "/api": { target: "http://localhost:8080" },
+      "/ws": { target: "ws://localhost:8080", ws: true },
+    },
+  },
 })
