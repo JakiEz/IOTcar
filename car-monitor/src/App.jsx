@@ -37,7 +37,7 @@ export default function App() {
   }, []);
 
   const truck = fleet.find((t) => t.id === selectedId) ?? fleet[0];
-
+ //dwad
   // Nothing yet (backend not reached, or first message still in flight).
   if (!truck) {
     return (
