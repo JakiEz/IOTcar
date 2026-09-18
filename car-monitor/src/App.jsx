@@ -5,8 +5,8 @@ import OdometerPanel from "@/components/OdometerPanel";
 import TruckSelector from "@/components/TruckSelector";
 
 // Where the Go backend lives. REST for the initial load, WebSocket for live pushes.
-const API_URL = "http://localhost:8080";
-const WS_URL = "ws://localhost:8080/ws";
+const API_URL = "";
+const WS_URL = `${location.protocol === "https:" ? "wss" : "ws"}://${location.host}/ws`;
 
 const TABS = ["Overview", "Battery", "Trips", "Alerts"];
 
